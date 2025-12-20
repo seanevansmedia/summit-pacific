@@ -15,7 +15,7 @@ export default function Navbar() {
       // 1. Only SHRINK if we have scrolled down past 100px.
       // 2. Only GROW if we are almost back at the top (< 20px).
       // The large gap (80px) absorbs the layout jump when the navbar resizes, preventing the loop.
-      if (currentScrollY > 60) {
+      if (currentScrollY > 100) {
         setIsScrolled(true);
       } else if (currentScrollY < 20) {
         setIsScrolled(false);
@@ -84,13 +84,15 @@ export default function Navbar() {
 
         {/* CTA Button */}
         <div className="flex items-center gap-4">
-          <button
-            className={`hidden md:block bg-[#0f172a] text-white hover:bg-blue-900 transition-all duration-500 hover:scale-105 active:scale-95 font-bold uppercase tracking-wide rounded-sm shadow-lg hover:shadow-blue-900/30 cursor-pointer
-              ${isScrolled ? "px-6 py-3 text-xs" : "px-8 py-4 text-xs"}
-            `}
-          >
-            Get Quote
-          </button>
+          <Link href="/contact">
+            <button
+              className={`hidden md:block bg-[#0f172a] text-white hover:bg-blue-900 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 font-bold uppercase tracking-wide rounded-sm shadow-lg cursor-pointer
+                ${isScrolled ? "px-6 py-3 text-xs" : "px-8 py-4 text-xs"}
+              `}
+            >
+              Get Quote
+            </button>
+          </Link>
           <Menu className="md:hidden w-8 h-8 text-[#0f172a] cursor-pointer hover:opacity-70 transition-opacity" />
         </div>
       </nav>

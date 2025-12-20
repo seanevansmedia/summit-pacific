@@ -117,7 +117,7 @@ export default function ServicesPage() {
       <header className="relative h-[420px] flex items-center overflow-hidden bg-slate-900">
         <div className="absolute inset-0 z-0">
           <Image 
-            src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=2600&auto=format&fit=crop" 
+            src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=2600&auto=format&fit=crop" 
             alt="Construction Services" 
             fill
             className="object-cover opacity-60"
@@ -126,7 +126,7 @@ export default function ServicesPage() {
           <div className="absolute inset-0 bg-[#0f172a]/70"></div>
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 w-full text-left">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 w-full text-left">
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-900/50 border border-blue-500/30 backdrop-blur-md mb-8">
               <span className="w-2 h-2 rounded-full bg-blue-400"></span>
@@ -151,11 +151,12 @@ export default function ServicesPage() {
 
       {/* --- SERVICES CAROUSEL --- */}
       <section className="py-20 bg-white overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 relative">
+        <div className="max-w-7xl mx-auto px-6 relative">
           
           {/* Header */}
           <div className="text-left mb-12 max-w-3xl px-4 md:px-0">
             <h2 className="text-blue-600 font-bold uppercase tracking-widest text-sm mb-3">What We Do</h2>
+            {/* FIXED: text-3xl md:text-4xl */}
             <p className="text-3xl md:text-4xl font-extrabold text-[#0f172a] leading-tight">
               Comprehensive construction services tailored to your project.
             </p>
@@ -191,11 +192,11 @@ export default function ServicesPage() {
                       {service.title}
                     </h3>
                     
-                    <p className="text-slate-600 leading-relaxed mb-3 text-base flex-grow">
+                    <p className="text-slate-600 leading-relaxed mb-2 text-base flex-grow">
                       {service.description}
                     </p>
 
-                    <ul className="mt-auto space-y-1 border-t border-slate-100 pt-3">
+                    <ul className="mt-auto space-y-1 border-t border-slate-100 pt-2">
                       {service.features.map((feature, i) => (
                         <li key={i} className="flex items-center gap-3 text-base font-medium text-slate-700">
                           <div className="w-1.5 h-1.5 bg-blue-600 rounded-full flex-shrink-0"></div>
@@ -222,10 +223,11 @@ export default function ServicesPage() {
 
       {/* --- THE SUMMIT PROCESS --- */}
       <section className="py-20 bg-[#0f172a]">
-        <div className="max-w-7xl mx-auto px-6 md:px-12">
+        <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
             <div className="text-blue-400 font-bold uppercase tracking-widest text-sm mb-3">How We Work</div>
-            <h2 className="text-3xl md:text-5xl font-extrabold text-white leading-tight">
+            {/* FIXED: text-3xl md:text-4xl */}
+            <h2 className="text-3xl md:text-4xl font-extrabold text-white leading-tight">
               The Summit Process
             </h2>
             <p className="text-slate-300 mt-6 text-lg max-w-2xl mx-auto">
@@ -264,10 +266,11 @@ export default function ServicesPage() {
 
       {/* --- CTA SECTION --- */}
       <section className="bg-slate-50 py-20 border-t border-slate-200">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 text-center">
+        <div className="max-w-7xl mx-auto px-6 text-center">
           <div className="text-blue-600 font-bold uppercase tracking-widest text-sm mb-3">Ready To Build</div>
           
-          <h2 className="text-3xl md:text-5xl font-extrabold mb-8 text-[#0f172a] leading-tight">
+          {/* FIXED: text-3xl md:text-4xl */}
+          <h2 className="text-3xl md:text-4xl font-extrabold mb-8 text-[#0f172a] leading-tight">
             Start Your Project Right.
           </h2>
           
@@ -282,6 +285,7 @@ export default function ServicesPage() {
               </button>
             </Link>
             <Link href="/projects">
+              {/* UPDATED: Added hover float animation */}
               <button className="cursor-pointer bg-white border-2 border-[#0f172a] text-[#0f172a] font-bold uppercase tracking-wide text-sm px-10 py-5 rounded-sm hover:bg-slate-100 transition-all shadow-sm hover:shadow-lg hover:-translate-y-1">
                 View Projects
               </button>
