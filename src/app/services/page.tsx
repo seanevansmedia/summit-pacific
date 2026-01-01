@@ -102,11 +102,21 @@ export default function ServicesPage() {
   const totalSlides = services.length - cardsToShow;
 
   const nextSlide = () => {
-    setCurrentSlide((prev) => (prev >= totalSlides ? 0 : prev + 1));
+    // If at end, wrap to start
+    if (currentSlide >= totalSlides) {
+      setCurrentSlide(0);
+    } else {
+      setCurrentSlide(currentSlide + 1);
+    }
   };
 
   const prevSlide = () => {
-    setCurrentSlide((prev) => (prev <= 0 ? totalSlides : prev - 1));
+    // If at start, wrap to end
+    if (currentSlide === 0) {
+      setCurrentSlide(totalSlides);
+    } else {
+      setCurrentSlide(currentSlide - 1);
+    }
   };
 
   return (
@@ -156,14 +166,13 @@ export default function ServicesPage() {
           {/* Header */}
           <div className="text-left mb-12 max-w-3xl px-4 md:px-0">
             <h2 className="text-blue-600 font-bold uppercase tracking-widest text-sm mb-3">What We Do</h2>
-            {/* FIXED: text-3xl md:text-4xl */}
             <p className="text-3xl md:text-4xl font-extrabold text-[#0f172a] leading-tight">
               Comprehensive construction services tailored to your project.
             </p>
           </div>
 
           {/* Slider Container */}
-          <div className="relative">
+          <div className="relative group/slider">
             
             {/* Left Arrow */}
             <button 
@@ -174,36 +183,42 @@ export default function ServicesPage() {
             </button>
 
             {/* Slider Track */}
+            {/* FIX: Removed 'gap-8' class. Added padding to container (-m-10 p-10) to prevent shadow clip */}
             <div className="overflow-hidden p-10 -m-10"> 
               <div 
-                className="flex transition-transform duration-500 ease-in-out gap-8"
+                className="flex transition-transform duration-500 ease-in-out"
                 style={{ transform: `translateX(-${currentSlide * (100 / cardsToShow)}%)` }}
               >
                 {services.map((service, index) => (
                   <div 
                     key={index} 
-                    className="flex-shrink-0 w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.33rem)] group bg-white border border-slate-200 rounded-sm p-6 hover:shadow-2xl hover:border-blue-600 transition-all duration-300 flex flex-col h-auto min-h-[400px]"
+                    // FIX: Dynamic width based on screen size (100% mobile, 50% tablet, 33% desktop)
+                    // FIX: px-4 adds the spacing INSIDE the width calculation, preventing drift
+                    style={{ width: `${100 / cardsToShow}%` }}
+                    className="flex-shrink-0 px-4"
                   >
-                    <div className="w-16 h-16 bg-[#0f172a] rounded-sm flex items-center justify-center mb-8 shadow-lg group-hover:scale-110 transition-transform duration-300 flex-shrink-0">
-                      {service.icon}
-                    </div>
-                    
-                    <h3 className="text-2xl font-bold text-[#0f172a] mb-4 group-hover:text-blue-700 transition-colors">
-                      {service.title}
-                    </h3>
-                    
-                    <p className="text-slate-600 leading-relaxed mb-2 text-base flex-grow">
-                      {service.description}
-                    </p>
+                    <div className="group bg-white border border-slate-200 rounded-sm p-6 hover:shadow-2xl hover:border-blue-600 transition-all duration-300 flex flex-col h-auto min-h-[400px]">
+                      <div className="w-16 h-16 bg-[#0f172a] rounded-sm flex items-center justify-center mb-8 shadow-lg group-hover:scale-110 transition-transform duration-300 flex-shrink-0">
+                        {service.icon}
+                      </div>
+                      
+                      <h3 className="text-2xl font-bold text-[#0f172a] mb-4 group-hover:text-blue-700 transition-colors">
+                        {service.title}
+                      </h3>
+                      
+                      <p className="text-slate-600 leading-relaxed mb-2 text-base flex-grow">
+                        {service.description}
+                      </p>
 
-                    <ul className="mt-auto space-y-1 border-t border-slate-100 pt-2">
-                      {service.features.map((feature, i) => (
-                        <li key={i} className="flex items-center gap-3 text-base font-medium text-slate-700">
-                          <div className="w-1.5 h-1.5 bg-blue-600 rounded-full flex-shrink-0"></div>
-                          {feature}
-                        </li>
-                      ))}
-                    </ul>
+                      <ul className="mt-auto space-y-1 border-t border-slate-100 pt-2">
+                        {service.features.map((feature, i) => (
+                          <li key={i} className="flex items-center gap-3 text-base font-medium text-slate-700">
+                            <div className="w-1.5 h-1.5 bg-blue-600 rounded-full flex-shrink-0"></div>
+                            {feature}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -226,8 +241,7 @@ export default function ServicesPage() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
             <div className="text-blue-400 font-bold uppercase tracking-widest text-sm mb-3">How We Work</div>
-            {/* FIXED: text-3xl md:text-4xl */}
-            <h2 className="text-3xl md:text-4xl font-extrabold text-white leading-tight">
+            <h2 className="text-3xl md:text-5xl font-extrabold text-white leading-tight">
               The Summit Process
             </h2>
             <p className="text-slate-300 mt-6 text-lg max-w-2xl mx-auto">
@@ -269,8 +283,7 @@ export default function ServicesPage() {
         <div className="max-w-7xl mx-auto px-6 text-center">
           <div className="text-blue-600 font-bold uppercase tracking-widest text-sm mb-3">Ready To Build</div>
           
-          {/* FIXED: text-3xl md:text-4xl */}
-          <h2 className="text-3xl md:text-4xl font-extrabold mb-8 text-[#0f172a] leading-tight">
+          <h2 className="text-3xl md:text-5xl font-extrabold mb-8 text-[#0f172a] leading-tight">
             Start Your Project Right.
           </h2>
           
@@ -285,7 +298,6 @@ export default function ServicesPage() {
               </button>
             </Link>
             <Link href="/projects">
-              {/* UPDATED: Added hover float animation */}
               <button className="cursor-pointer bg-white border-2 border-[#0f172a] text-[#0f172a] font-bold uppercase tracking-wide text-sm px-10 py-5 rounded-sm hover:bg-slate-100 transition-all shadow-sm hover:shadow-lg hover:-translate-y-1">
                 View Projects
               </button>

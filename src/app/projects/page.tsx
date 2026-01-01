@@ -6,7 +6,7 @@ import Footer from "@/components/Footer";
 import Image from "next/image";
 import Link from "next/link";
 import { MapPin, ArrowUpRight, Filter } from "lucide-react";
-import { projects } from "@/lib/data"; // Using the centralized data file
+import { projects } from "@/lib/data"; // Using centralized data
 
 const categories = ["All", "Commercial", "Residential", "Industrial", "Civil"];
 
@@ -64,10 +64,10 @@ export default function ProjectsPage() {
         <div className="max-w-7xl mx-auto px-6">
           
           {/* FILTER BAR */}
-          <div className="flex flex-col md:flex-row justify-between items-end mb-12 border-b border-slate-100 pb-8 gap-6">
+          {/* FIXED: Changed items-end to items-start md:items-end to fix mobile right-alignment */}
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 border-b border-slate-100 pb-8 gap-6">
             <div>
               <h2 className="text-blue-600 font-bold uppercase tracking-widest text-sm mb-3">Filter Projects</h2>
-              {/* UPDATED: Matches Services page size exactly (text-3xl md:text-4xl) */}
               <p className="text-3xl md:text-4xl font-extrabold text-[#0f172a] leading-tight">
                 Explore our work.
               </p>
@@ -78,7 +78,7 @@ export default function ProjectsPage() {
                 <button
                   key={cat}
                   onClick={() => setActiveCategory(cat)}
-                  className={`px-5 py-2 rounded-full text-sm font-bold transition-all duration-300 border
+                  className={`cursor-pointer px-5 py-2 rounded-full text-sm font-bold transition-all duration-300 border
                     ${activeCategory === cat 
                       ? "bg-[#0f172a] border-[#0f172a] text-white shadow-lg" 
                       : "bg-white border-slate-200 text-slate-600 hover:border-[#0f172a] hover:text-[#0f172a]"}
@@ -144,12 +144,11 @@ export default function ProjectsPage() {
 
       {/* --- BOTTOM CTA --- */}
       <section className="bg-blue-50 py-20 border-t border-blue-100">
-        {/* ALIGNMENT: max-w-7xl mx-auto px-6 */}
         <div className="max-w-7xl mx-auto px-6 text-center">
           <h2 className="text-3xl md:text-4xl font-extrabold mb-6 text-[#0f172a]">Ready to start your next build?</h2>
           <div className="flex justify-center gap-4">
             <Link href="/contact">
-              <button className="bg-[#0f172a] text-white font-bold uppercase tracking-wide text-sm px-10 py-5 rounded-sm hover:bg-blue-900 transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1 cursor-pointer">
+              <button className="bg-[#0f172a] text-white font-bold uppercase tracking-wide text-sm px-10 py-5 rounded-sm hover:bg-blue-900 transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1">
                 Get a Quote
               </button>
             </Link>

@@ -81,14 +81,12 @@ export default function AboutPage() {
           
           {/* Right Image */}
           <div className="relative h-[500px] w-full bg-slate-100 rounded-sm overflow-hidden shadow-2xl">
-             {/* NEW IMAGE: Active Construction / Structure */}
              <Image 
                src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=1200"
-               alt="Construction Site History"
+               alt="Construction Planning"
                fill
                className="object-cover"
              />
-             {/* Floating Quote Card */}
              <div className="absolute bottom-8 left-8 right-8 bg-white/95 backdrop-blur p-6 rounded-sm shadow-lg border-l-4 border-[#0f172a]">
                <p className="text-slate-800 italic font-medium leading-relaxed">
                  "Our mission is simple: To build structures that stand the test of time and relationships that last a lifetime."
@@ -141,7 +139,7 @@ export default function AboutPage() {
                     src={leader.image}
                     alt={leader.name}
                     fill
-                    className={`object-cover ${leader.objectPosition || 'object-center'} transition-transform duration-500 group-hover:scale-105`}
+                    className={`object-cover ${leader.objectPosition} transition-transform duration-500 group-hover:scale-105`}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0f172a] to-transparent opacity-0 group-hover:opacity-80 transition-opacity duration-300 flex items-end p-6">
                      <div className="flex gap-4 text-white translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
@@ -175,13 +173,14 @@ export default function AboutPage() {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-            {/* FIXED WIDTH BUTTON: w-52 */}
-            <button className="cursor-pointer w-52 bg-[#0f172a] text-white font-bold uppercase tracking-wide text-sm py-5 rounded-sm hover:bg-blue-900 transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1">
-              View Openings
-            </button>
+            {/* FIXED: Wrapped in Link to /contact */}
+            <Link href="/contact">
+              <button className="cursor-pointer w-52 bg-[#0f172a] text-white font-bold uppercase tracking-wide text-sm py-5 rounded-sm hover:bg-blue-900 transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1">
+                View Openings
+              </button>
+            </Link>
             
             <Link href="/contact">
-              {/* FIXED WIDTH BUTTON: w-52 */}
               <button className="cursor-pointer w-52 bg-white border-2 border-[#0f172a] text-[#0f172a] font-bold uppercase tracking-wide text-sm py-5 rounded-sm hover:bg-slate-50 transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1">
                 Contact Us
               </button>

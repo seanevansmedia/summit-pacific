@@ -4,13 +4,14 @@ import Image from "next/image";
 
 export default function Projects() {
   return (
-    <section className="pt-24 pb-12 px-6 bg-white border-t border-blue-100">
+    // FIXED: Reduced pt-24 to pt-12 to tighten space above "Our Track Record"
+    <section className="pt-12 pb-12 px-6 bg-white border-t border-blue-100">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
           <div>
             <div className="text-blue-600 font-bold uppercase tracking-widest text-sm mb-3">Our Track Record</div>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-[#0f172a]">Recent Projects</h2>
+            <h2 className="text-4xl md:text-5xl font-extrabold text-[#0f172a]">Recent Projects</h2>
           </div>
           <Link href="/projects" className="group flex items-center gap-2 font-bold text-sm text-[#0f172a] hover:text-blue-600 transition-colors cursor-pointer">
             VIEW ALL PROJECTS
@@ -20,7 +21,7 @@ export default function Projects() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
           
-          {/* Project 1 - Linked to Detail Page */}
+          {/* Project 1 */}
           <Link href="/projects/1" className="block group">
             <div className="h-full bg-white rounded-sm border border-slate-200 overflow-hidden hover:shadow-2xl hover:border-blue-200 transition-all duration-300 flex flex-col">
                <div className="h-72 overflow-hidden relative">
@@ -50,7 +51,7 @@ export default function Projects() {
             </div>
           </Link>
 
-          {/* Project 2 - Linked to Detail Page */}
+          {/* Project 2 */}
           <Link href="/projects/2" className="block group">
             <div className="h-full bg-white rounded-sm border border-slate-200 overflow-hidden hover:shadow-2xl hover:border-blue-200 transition-all duration-300 flex flex-col">
                <div className="h-72 overflow-hidden relative">
